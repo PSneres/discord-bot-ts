@@ -1,0 +1,63 @@
+import { PermissionResolvable, PermissionsBitField, PermissionsString } from "discord.js";
+
+const permissionTranslations: Partial<Record<PermissionsString, string>> = {
+    Administrator: "Administrador",
+    CreateInstantInvite: "Criar convite instantâneo",
+    KickMembers: "Expulsar membros",
+    BanMembers: "Banir membros",
+    ManageChannels: "Gerenciar canais",
+    ManageGuild: "Gerenciar servidor",
+    AddReactions: "Adicionar reações",
+    ViewAuditLog: "Ver logs de auditoria",
+    PrioritySpeaker: "Voz com prioridade",
+    Stream: "Transmitir",
+    ViewChannel: "Ver canal",
+    SendMessages: "Enviar mensagens",
+    SendTTSMessages: "Enviar mensagens TTS",
+    ManageMessages: "Gerenciar mensagens",
+    EmbedLinks: "Prévia de links",
+    AttachFiles: "Anexar arquivos",
+    ReadMessageHistory: "Ler histórico de mensagens",
+    MentionEveryone: "Mencionar everyone",
+    UseExternalEmojis: "Usar emojis externos",
+    ViewGuildInsights: "Ver estatísticas do servidor",
+    Connect: "Conectar",
+    Speak: "Falar",
+    MuteMembers: "Silenciar membros",
+    DeafenMembers: "Ensurdecer membros",
+    MoveMembers: "Mover membros",
+    UseVAD: "Usar detecção de voz", 
+    ChangeNickname: "Mudar apelido",
+    ManageNicknames: "Gerenciar apelidos",
+    ManageRoles: "Gerenciar cargos",
+    ManageWebhooks: "Gerenciar webhooks",
+    ManageEmojisAndStickers: "Gerenciar emojis e adesivos",
+    ManageGuildExpressions: "Gerenciar expressões do servidor",
+    UseApplicationCommands: "Usar comandos de aplicativo",
+    RequestToSpeak: "Solicitar para falar",
+    ManageEvents: "Gerenciar eventos",
+    ManageThreads: "Gerenciar tópicos",
+    CreatePublicThreads: "Criar tópicos públicos",
+    CreatePrivateThreads: "Criar tópicos privados",
+    UseExternalStickers: "Usar adesivos externos",
+    SendMessagesInThreads: "Enviar mensagens em tópicos",
+    UseEmbeddedActivities: "Usar atividades incorporadas",
+    ModerateMembers: "Moderar membros",
+    ViewCreatorMonetizationAnalytics: "Ver análises de monetização de criador",
+    UseSoundboard: "Usar soundboard",
+    CreateGuildExpressions: "Criar expressões do servidor",
+    CreateEvents: "Criar eventos",
+    UseExternalSounds: "Usar sons externos",
+    SendVoiceMessages: "Enviar mensagens de voz",
+    SendPolls: "Enviar enquetes",
+    UseExternalApps: "Usar aplicativos externos",
+    SetVoiceChannelStatus: "Definir status do canal de voz",
+    BypassSlowmode: "Ignorar modo lento",
+};
+
+export default function translatePermissions(permissions: PermissionResolvable[] | undefined): string[] {
+    if (!permissions) return [];
+    const permissionNames = new PermissionsBitField(permissions).toArray();
+
+    return permissionNames.map((name) => permissionTranslations[name] ?? name);
+}
