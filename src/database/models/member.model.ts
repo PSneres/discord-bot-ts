@@ -13,4 +13,4 @@ const memberSchema = new Schema(
 )
 
 export type Member = InferSchemaType<typeof memberSchema>;
-export const MemberModel = model("guild", memberSchema);
+export const MemberModel = model("member", memberSchema);

@@ -19,7 +19,7 @@ class GuildRepository {
         const guild = await GuildModel.findByIdAndUpdate(id, value, 
         { 
             upsert: true,
-            new: true
+            returnDocument: true
         }).lean();
 
         this.cache.set(id, guild);

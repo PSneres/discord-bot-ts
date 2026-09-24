@@ -13,7 +13,7 @@ class MemberRepository {
         const member = MemberModel.findOneAndUpdate({ guildId, userId }, value, 
         {
             upsert: true,
-            new: true
+            returnDocument: true
         }).lean();
 
         return member;

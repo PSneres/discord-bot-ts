@@ -1,11 +1,9 @@
 import { Message, GuildMember } from "discord.js";
-import { config } from "../config/constants";
 import Client from "../client";
 import Command from "../structures/Command";
 import permissionTranslator from "../utils/discord/permissionsTranslator"
-const prefix = config.prefix;
 
-export function isCommand(message: Message): boolean {
+export function isCommand(message: Message, prefix: string): boolean {
     if (message.author.bot) return false;
     if (message.webhookId) return false;
     if (!message.content.startsWith(prefix)) return false;
@@ -17,11 +15,11 @@ export function isCommand(message: Message): boolean {
     return true;
 }
 
-export async function executeCommand(client: Client, message: Message): Promise<void> {
-    const command: Command | undefined = resolveCommand(client, message);
+export async function executeCommand(client: Client, message: Message, prefix: string): Promise<void> {
+    const command: Command | undefined = resolveCommand(client, message, prefix);
     if (!command) return;
 
-    const args = parseArgs(message.content);
+    const args = parseArgs(message.content, prefix);
 
     if (!hasUserPermissions(message, command)) {
         return sendError(message, `Você não tem permissão pra usar esse comando: \`${permissionTranslator(command.data.memberPermissions).join(', ')}\``);
@@ -39,7 +37,7 @@ export async function executeCommand(client: Client, message: Message): Promise<
     }
 }
 
-function resolveCommand(client: Client, message: Message): Command | undefined {
+function resolveCommand(client: Client, message: Message, prefix: string): Command | undefined {
     const messageTextSplited = message.content.slice(prefix.length).trim().split(/\s+/);
     const commandName: string | undefined = messageTextSplited[0]?.toLowerCase();
 
@@ -52,7 +50,7 @@ function resolveCommand(client: Client, message: Message): Command | undefined {
     return command;
 }
 
-function parseArgs(content: string): string[] {
+function parseArgs(content: string, prefix: string): string[] {
     // Remove prefix, remove unnecessary spaces, separates args, remove command name.
     const args = content.slice(prefix.length).trim().split(/\s+/).slice(1);
 
