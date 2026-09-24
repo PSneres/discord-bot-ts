@@ -6,7 +6,6 @@ async function main(): Promise<void> {
 
     await client.init();
     await client.login(env.discordToken);
-
 }
 
 main();

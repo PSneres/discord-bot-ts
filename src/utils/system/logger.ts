@@ -2,10 +2,10 @@ import "colors";
 
 class Logger {
     info(message: string): void {
-        console.log("[INFO]".blue, message);
+        console.log("[INFO]".cyan, message);
     }
 
-    warn(message: string) {
+    warn(message: string): void {
         console.log("[WARN]".yellow, message);
     }
 
