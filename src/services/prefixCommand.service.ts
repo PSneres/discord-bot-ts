@@ -2,6 +2,7 @@ import { Message, GuildMember } from "discord.js";
 import Client from "../client";
 import Command from "../structures/Command";
 import permissionTranslator from "../utils/discord/permissionsTranslator"
+import { config } from "../config/constants";
 
 export function isCommand(message: Message, prefix: string): boolean {
     if (message.author.bot) return false;
@@ -28,6 +29,8 @@ export async function executeCommand(client: Client, message: Message, prefix: s
     if (!hasClientPermissions(message, command, client)) {
         return sendError(message, `Não tenho permissão pra executar esse comando aqui: \`${permissionTranslator(command.data.clientPermissions).join(', ')}\``);
     }
+
+    if (command.data.devOnly && !config.devIds.includes(message.author.id)) return;  //Melhor deixar sem resposta do que dizer que é um comando restritro.
 
     try {
         await command.execute(message, args);

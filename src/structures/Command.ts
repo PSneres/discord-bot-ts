@@ -6,6 +6,7 @@ interface CommandData {
         description?: string,
         aliases?: string[],
         usage?: string,
+        category?: string,
         memberPermissions?: PermissionResolvable[],
         clientPermissions?: PermissionResolvable[],
         devOnly?: boolean,
