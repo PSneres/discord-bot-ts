@@ -1,5 +1,5 @@
 import { Schema, model, InferSchemaType } from "mongoose";
-import { config } from "../../config/constants";
+import { config } from "#config/constants.js";
 
 const guildSchema = new Schema(
     {
@@ -10,4 +10,4 @@ const guildSchema = new Schema(
 )
 
 export type Guild = InferSchemaType<typeof guildSchema>;
-export const GuildModel = model("guild", guildSchema);
+export const GuildModel = model<Guild>("guild", guildSchema);

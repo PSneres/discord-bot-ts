@@ -1,4 +1,4 @@
-import { GuildModel, Guild } from "../models/guild.model";
+import { GuildModel, Guild } from "#models/guild.model.js";
 
 type GuildUpdate = Partial<Omit<Guild, "_id">>;
 

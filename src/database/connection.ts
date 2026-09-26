@@ -1,6 +1,6 @@
-import env from "../config/environment";
+import env from "#config/environment.js";
 import mongoose from "mongoose";
-import Logger from "../utils/system/logger";
+import Logger from "../utils/system/logger.js";
 
 export async function connectDatabase(logger: Logger) {
   mongoose.connection.on("connected", () => logger.info("MongoDB conected"));
