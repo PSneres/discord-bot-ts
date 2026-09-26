@@ -1,5 +1,5 @@
-import Client from "../client";
-import BaseEvent from "../structures/Event";
+import Client from "#client";
+import BaseEvent from "#structures/Event.js";
 
 export default class Ready extends BaseEvent<"clientReady"> {
     constructor(client: Client) {

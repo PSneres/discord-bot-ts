@@ -8,6 +8,15 @@
   "engines": {
     "node": ">=20.0.0"
   },
+  "type": "module",
+  "imports": {
+    "#repositories": "./src/database/repositories/index.js",
+    "#models/*": "./src/database/models/*.js",
+    "#services/*": "./src/services/*.js",
+    "#structures/*": "./src/structures/*.js",
+    "#client": "./src/client.js",
+    "#config/*": "./src/config/*.js"
+  },
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "tsc",

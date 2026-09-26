@@ -1,4 +1,4 @@
-import Client from "../../client";
+import Client from "#client";
 import { readdirSync } from "fs";
 import { pathToFileURL } from "node:url";
 
@@ -6,7 +6,7 @@ export default async function loadEvents(client: Client): Promise<void> {
     const EVENT_PATH = "./src/Events";
 
     let eventCount = 0;
-    for (let fileName of readdirSync(EVENT_PATH)) {
+    for (const fileName of readdirSync(EVENT_PATH)) {
         const filePathURL = pathToFileURL(`${EVENT_PATH}/${fileName}`).href
         const { default: Event }  = await import(filePathURL);
                 

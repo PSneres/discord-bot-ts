@@ -1,5 +1,5 @@
-import Client from "../../client";
-import BaseCommand from "../../structures/Command";
+import Client from "#client";
+import BaseCommand from "#structures/Command";
 import { readdirSync } from "fs";
 import { pathToFileURL } from "node:url";
 
@@ -17,7 +17,7 @@ export default async function loadCommands(client: Client): Promise<BaseCommand[
             const commandPathURL = pathToFileURL(`${COMMAND_PATH}/${category}/${fileName}`).href
             const { default: Command } = await import(commandPathURL);
 
-            const command = new Command(client)
+            const command: BaseCommand = new Command(client)
             commands.push(command);
         }
     }

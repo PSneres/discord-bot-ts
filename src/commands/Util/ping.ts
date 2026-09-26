@@ -1,6 +1,6 @@
 import { Message } from "discord.js";
-import Client from "../../client";
-import BaseCommand from "../../structures/Command";
+import Client from "#client";
+import BaseCommand from "#structures/Command";
 
 export default class PingCommand extends BaseCommand {
     constructor(client: Client) {

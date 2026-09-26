@@ -1,14 +1,14 @@
 // Base
 import { Client } from "discord.js";
-import clientOptions from "./config/clientOptions";
+import clientOptions from "#config/clientOptions.js";
 //Types
-import BaseCommand from "./structures/Command";
+import BaseCommand from "#structures/Command.js";
 // Client
-import loadCommands from "./utils/client/loadCommands";
-import loadEvents from "./utils/client/loadEvents";
-import Logger from "./utils/system/logger";
+import loadCommands from "./utils/client/loadCommands.js";
+import loadEvents from "./utils/client/loadEvents.js";
+import Logger from "./utils/system/logger.js";
 //Database
-import connectDatabase from "./database/connection";
+import connectDatabase from "./database/connection.js";
 
 class BotClient extends Client {
     commands: BaseCommand[] = [];

@@ -1,7 +1,7 @@
-import Client from "../../client";
-import BaseCommand from "../../structures/Command";
+import Client from "#client";
+import BaseCommand from "#structures/Command";
 import { Message } from "discord.js";
-import { guildRepository } from "../../database/repositories";
+import { guildRepository } from "#repositories";
 import { PermissionFlagsBits } from "discord.js";
 
 export default class TestCommand extends BaseCommand {
@@ -29,10 +29,10 @@ export default class TestCommand extends BaseCommand {
             return;
         }
         
-        await guildRepository.set(message.guild!.id, { prefix:  args[0] });
+        const guildData = await guildRepository.set(message.guild!.id, { prefix:  args[0] });
 
         message.reply({
-            content: `Prefixo setado com sucesso! Novo prefixo: \`${args[0]}\``
+            content: `Prefixo setado com sucesso! Novo prefixo: \`${guildData.prefix}\``
         })
     }
 }

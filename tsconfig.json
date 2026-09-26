@@ -3,6 +3,14 @@
     "target": "ES2022",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
+    "paths": {
+      "#repositories": ["./src/database/repositories/index.ts"],
+      "#models/*": ["./src/database/models/*"],
+      "#services/*": ["./src/services/*"],
+      "#structures/*": ["./src/structures/*"],
+      "#client": ["./src/client.ts"],
+      "#config/*": ["./src/config/*"]
+    },
     
     "rootDir": "src",
     "outDir": "./dist",
