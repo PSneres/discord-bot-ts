@@ -4,7 +4,8 @@ import { config } from "#config/constants.js";
 const guildSchema = new Schema(
     {
         _id: { type: String, required: true },
-        prefix: { type: String, required: true, default: config.prefix  }
+        prefix: { type: String, default: config.prefix  },
+        xpChannel: { type: String, required: false }
     },
     { timestamps: true }
 )
