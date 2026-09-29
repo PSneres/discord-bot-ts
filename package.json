@@ -25,6 +25,7 @@
     "test": "jest"
   },
   "devDependencies": {
+    "@types/ms": "^2.1.0",
     "@types/node": "^22.20.2",
     "eslint": "^10.10.0",
     "jest": "^30.5.1",
@@ -42,6 +43,7 @@
     "colors": "^1.4.0",
     "discord.js": "^14.27.0",
     "dotenv": "^17.4.2",
-    "mongoose": "^9.10.1"
+    "mongoose": "^9.10.1",
+    "ms": "^2.1.3"
   }
 }

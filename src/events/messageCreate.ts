@@ -21,7 +21,7 @@ export default class MessageCreate extends BaseEvent<"messageCreate"> {
             }
 
             if ((await canReciveXP(message, prefix))) {
-                await grantXP(message.guild.id, message.author.id);
+                await grantXP(message, message.guild.id, message.author.id);
             }
         }
     }
