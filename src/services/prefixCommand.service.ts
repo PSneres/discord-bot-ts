@@ -3,7 +3,11 @@
     import Command from "#structures/Command.js";
     import permissionTranslator from "../utils/discord/permissionsTranslator.js"
     import { config } from "#config/constants.js";
+    import { remainingTime, setCooldown } from "./cooldown.service.js";
+    import ms from "ms";
 
+    const BASE_COMMAND_COOLDOWN = 1500;
+    
     export function isCommand(message: Message, prefix: string): boolean {
         if (message.author.bot) return false;
         if (message.webhookId) return false;
@@ -22,6 +26,11 @@
 
         const args = parseArgs(message.content, prefix);
 
+        const remaining = await remainingTime(message.guild!.id, message.author.id, `command/${command.data.name}`);
+        if (remaining > 0) {
+            return sendError(message, `Aguarde \`${ms(remaining)}\` antes de usar esse comando novamente.`)
+        }
+
         if (!hasUserPermissions(message, command)) {
             return sendError(message, `Você não tem permissão pra usar esse comando: \`${permissionTranslator(command.data.memberPermissions).join(', ')}\``);
         } 
@@ -34,6 +43,7 @@
 
         try {
             await command.execute(message, args);
+            await setCooldown(message.guild!.id, message.author.id, `command/${command.data.name}`, command.data.cooldown ?? BASE_COMMAND_COOLDOWN)
         } catch(err) {
             client.logger.error(`Command execute error (${command?.data.name}`, err);
             await sendError(message, "Não foi possivel executar o commando.");

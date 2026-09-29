@@ -10,6 +10,7 @@ interface CommandData {
         memberPermissions?: PermissionResolvable[],
         clientPermissions?: PermissionResolvable[],
         devOnly?: boolean,
+        cooldown?: number,
 }
 
 interface CommandOptions {
