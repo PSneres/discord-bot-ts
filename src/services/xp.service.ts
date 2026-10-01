@@ -2,6 +2,7 @@ import { Message, TextChannel } from "discord.js";
 import { memberRepository, guildRepository } from "#repositories";
 import { remainingTime, setCooldown } from "./cooldown.service.js";
 import { Member } from "#models/member.model.js"
+import { XpData } from "../types/XpData.js";
 
 /// Random XP gained per message (min, max) 
 const XP_GAIN_RANGE: [number, number] = [3, 5];
@@ -47,13 +48,26 @@ export async function deductXP(guildId: string, userId: string, xp: number): Pro
     await memberRepository.set(guildId, userId, memberData);
 }
 
-export async function setXP(guildId:  string, userId: string, xp: number): Promise<void> {
+export async function setXP(guildId: string, userId: string, xp: number): Promise<void> {
     const memberData = await memberRepository.get(guildId, userId);
 
     memberData.xp = xp
     memberData.level = calculateLevel(memberData.xp);
 
     await memberRepository.set(guildId, userId, memberData);
+}
+
+export async function getXpData(guildId: string, userId: string): Promise<XpData> {
+    const memberData = await memberRepository.get(guildId, userId);
+    const { xp, level } =  memberData
+
+    const data: XpData  = { xp, level }
+
+    return data;
+}
+
+export async function setMemberActive(guildId: string, userId: string, isActive: boolean): Promise<void> {
+    await memberRepository.set(guildId, userId, { active: isActive });
 }
 
 function randomXP(): number {

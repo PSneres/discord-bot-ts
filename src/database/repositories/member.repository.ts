@@ -29,14 +29,50 @@ class MemberRepository {
         return;
     }
 
-    async deleteGuild(guildId: string) {
+    async deleteGuild(guildId: string): Promise<void> {
         await MemberModel.deleteMany({ guildId });
+    }
+
+    async setGuild(guildId: string, value: MemberUpdate): Promise<void> {
+        if (Object.keys(value).length === 0)  {
+            throw new Error("setGuild: no fields provided to update.");
+        }
+
+        await MemberModel.updateMany(
+            { guildId },
+            { $set: value }
+        );
     }
 
     // XP functions
 
-    async topXP(guildId: string, limit = 10): Promise<Member[]> {
-        return await MemberModel.find({ guildId }).sort({ xp: -1 }).limit(limit).lean();
+   async topXP(guildId: string, page = 1, pageSize = 10) {
+        const [members, total] = await Promise.all([
+            MemberModel.find({ guildId })
+                .sort({ xp: -1, _id: 1 }) 
+                .skip((page - 1) * pageSize)
+                .limit(pageSize)
+                .lean()
+                .maxTimeMS(3000),
+            MemberModel.countDocuments({ guildId }),
+        ]);
+
+        return { members, total, totalPages: Math.ceil(total / pageSize) };
+    }
+
+    async getRank(guildId: string, userId: string) {
+        const member = await MemberModel.findOne({ guildId, userId }).lean();
+        if (!member) return null;
+
+        const higher = await MemberModel.countDocuments({
+            guildId,
+            $or: [
+                { xp: { $gt: member.xp } },
+                { xp: member.xp, _id: { $lt: member._id } },
+            ],
+        });
+
+        return { member, position: higher + 1 };
     }
 
     // Coldown functions

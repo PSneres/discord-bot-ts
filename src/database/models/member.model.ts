@@ -18,6 +18,7 @@ const memberSchema = new Schema(
         money: { type: Number, default: 0 },
         bank: { type: Number, default: 0 },
         cooldowns: { type: [cooldownEntrySchema], default: [] },
+        active: { type: Boolean, default: true }
     },
     { timestamps: true }
 )
