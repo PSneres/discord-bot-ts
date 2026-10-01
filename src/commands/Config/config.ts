@@ -5,7 +5,7 @@ import { PermissionFlagsBits } from "discord.js";
 import { loadedConfigs, executeConfig } from "../../config/settings/index.js";
 import Embed from "#structures/Embed.js"
 
-export default class TestCommand extends BaseCommand {
+export default class extends BaseCommand {
     constructor(client: Client) {
         super(client, {
             name: "config",
@@ -13,7 +13,8 @@ export default class TestCommand extends BaseCommand {
             usage: "<set ou remove> <nome da configuração> <args>",
             memberPermissions: [ 
                 PermissionFlagsBits.ManageMessages, 
-                PermissionFlagsBits.ManageChannels
+                PermissionFlagsBits.ManageChannels,
+                PermissionFlagsBits.ManageGuild
              ]
         });
     }

@@ -11,11 +11,21 @@ export default async function loadEvents(client: Client): Promise<void> {
         const { default: Event }  = await import(filePathURL);
                 
         const event = new Event(client);
-        if (event.data.once) {
-            client.once(event.data.name, (...args) => event.execute(...args));
-        } else {
-            client.on(event.data.name, (...args) => event.execute(...args));
-        }
+        const handler = async (...args: unknown[]) => {
+                try {
+                    await event.execute(...args);
+                } catch (error) {
+                    client.logger.error(`Event error in ${event.data.name}`, error);
+                }
+            };
+
+            
+            if (event.data.once) {
+                client.once(event.data.name, handler);
+            }
+            else {
+                client.on(event.data.name, handler);
+            }
 
         eventCount++
     }
