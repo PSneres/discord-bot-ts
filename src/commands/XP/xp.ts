@@ -1,9 +1,10 @@
-import { Message } from "discord.js";
+import { Message, User } from "discord.js";
 import Client from "#client";
 import BaseCommand from "#structures/Command.js";
 import { getXpData } from "#services/xp.service";
 import Embed from "#structures/Embed";
 import { memberRepository } from "#repositories";
+import getUser from "../../utils/discord/getUser.js";
 
 export default class extends BaseCommand {
     constructor(client: Client) {
@@ -15,16 +16,7 @@ export default class extends BaseCommand {
     }
 
     async execute(message: Message, args: string[]) {
-        const guild = message.guild!;
-        const targetId = args[0];
-        const mentionedUser = message.mentions.users.first();
-
-        const fetchedMember = targetId && !mentionedUser
-            ? await guild.members.fetch(targetId).catch(() => null)
-            : null;
-
-        const selfUser = targetId ? null : message.author;
-        const user = mentionedUser ?? fetchedMember?.user ?? selfUser;
+        const user: User | null = await getUser(message, args[0]);
 
         if (!user) {
             await message.reply({

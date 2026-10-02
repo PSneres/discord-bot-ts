@@ -7,7 +7,8 @@ import { memberRepository } from "#repositories";
 export default class extends BaseCommand {
     constructor(client: Client) {
         super(client, {
-            name: "rank",
+            name: "rank-xp",
+            aliases: ['rankxp', 'rx', 'topxp'],
             description: "Mostra uma pagina do rank.",
             usage: "<numero>",
         });
@@ -29,7 +30,7 @@ export default class extends BaseCommand {
             return;
         }
 
-        const rank = await memberRepository.topXP(message.guild!.id, page);
+        const rank = await memberRepository.topXP(message.guild!.id, page || 1);
         let rankText = "";
 
         if (rank.members.length <= 0) {

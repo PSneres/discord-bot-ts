@@ -4,7 +4,7 @@
     import permissionTranslator from "../utils/discord/permissionsTranslator.js"
     import { config } from "#config/constants.js";
     import { remainingTime, setCooldown } from "./cooldown.service.js";
-    import ms from "ms";
+    import getTimestamp from "../utils/discord/getTimestamp.js";
 
     const BASE_COMMAND_COOLDOWN = 1500;
     
@@ -28,7 +28,7 @@
 
         const remaining = await remainingTime(message.guild!.id, message.author.id, `command/${command.data.name}`);
         if (remaining > 0) {
-            return sendError(message, `Aguarde \`${ms(remaining)}\` antes de usar esse comando novamente.`)
+            return sendError(message, `Aguarde ${getTimestamp(remaining)} antes de usar esse comando novamente.`)
         }
 
         if (!hasUserPermissions(message, command)) {
