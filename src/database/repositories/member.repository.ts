@@ -47,17 +47,20 @@ class MemberRepository {
     // XP functions
 
    async topXP(guildId: string, page = 1, pageSize = 10) {
+       const filter = { guildId, active: true };
+       page = Math.max(1, page);
+
         const [members, total] = await Promise.all([
-            MemberModel.find({ guildId })
+            MemberModel.find(filter)
                 .sort({ xp: -1, _id: 1 }) 
                 .skip((page - 1) * pageSize)
                 .limit(pageSize)
                 .lean()
                 .maxTimeMS(3000),
-            MemberModel.countDocuments({ guildId }),
+            MemberModel.countDocuments(filter),
         ]);
 
-        return { members, total, totalPages: Math.ceil(total / pageSize) };
+        return { members, total, totalPages:  Math.max(1, Math.ceil(total / pageSize)) };
     }
 
     async getRank(guildId: string, userId: string) {
@@ -73,6 +76,26 @@ class MemberRepository {
         });
 
         return { member, position: higher + 1 };
+    }
+
+    // Economy functions
+
+    async topMoney(guildId: string, page = 1, pageSize = 10) {
+        const filter = { guildId, active: true };
+        page = Math.max(1, page);
+
+        const [members, total] = await Promise.all([
+            MemberModel.aggregate([
+                { $match: filter },
+                { $addFields: { total: { $add: ["$money", "$bank"] } } },
+                { $sort: { total: -1, _id: 1 } },
+                { $skip: (page - 1) * pageSize },
+                { $limit: pageSize },
+            ]).option({ maxTimeMS: 3000 }),
+            MemberModel.countDocuments(filter)
+        ])
+
+        return { members, total, totalPages: Math.max(1, Math.ceil(total / pageSize)) };
     }
 
     // Coldown functions

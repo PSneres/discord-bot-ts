@@ -1,8 +1,9 @@
-import { Message, PermissionFlagsBits } from "discord.js";
+import { Message, PermissionFlagsBits, User } from "discord.js";
 import Client from "#client";
 import BaseCommand from "#structures/Command.js";
 import { setXP } from "#services/xp.service.js";
 import { memberRepository } from "#repositories";
+import getUser from "../../utils/discord/getUser.js";
 
 export default class extends BaseCommand {
     constructor(client: Client) {
@@ -28,6 +29,13 @@ export default class extends BaseCommand {
             return;
         }
 
+        if (xp < 0) {
+            await message.reply({
+                content: `O numero do xp não pode ser negativo.`
+            });
+            return;
+        }
+
         if (targetId === "all") {
             await memberRepository.setGuild(message.guild!.id, { xp });
 
@@ -37,11 +45,7 @@ export default class extends BaseCommand {
             return; 
         }
 
-        const mentionedUser = message.mentions.users.first();
-        const fetchedMember = targetId && !mentionedUser
-            ? await message.guild!.members.fetch(targetId).catch(() => null)
-            : null;
-        const user = mentionedUser ?? fetchedMember?.user
+        const user: User | null = await getUser(message, targetId);
 
         if (!user) {
             await message.reply({
