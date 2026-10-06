@@ -3,10 +3,10 @@ const MULTIPLIERS: Record<string, number> = { k: 1e3, m: 1e6, b: 1e9, t: 1e12 };
 export default function parseAmount(input: string | undefined): number {
     if (!input) return NaN;
 
-    const match = /^(\d+)([kmbt])?$/i.exec(input.trim());
+    const match = /^(\d+(\.\d+)?)([kmbt])?$/i.exec(input.trim().replace(",","."));
     if (!match) return NaN;
 
-    const [_, digits, suffix] = match;
+    const [, digits, _, suffix] = match;
     if (!digits || !suffix) return NaN;
 
     const multiplier = suffix ? MULTIPLIERS[suffix.toLowerCase()] : 1;
@@ -14,5 +14,5 @@ export default function parseAmount(input: string | undefined): number {
     
     const value = Number(digits) * multiplier;
 
-    return Math.round(value);
+    return value;
 }
