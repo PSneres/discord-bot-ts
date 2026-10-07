@@ -1,0 +1,1 @@
+export type ModerationAction = "ban" | "kick" | "mute";

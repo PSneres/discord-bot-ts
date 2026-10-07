@@ -9,6 +9,16 @@ const cooldownEntrySchema = new Schema(
   { _id: false }
 );
 
+const warnEntrySchema = new Schema(
+  {
+    _id: { type: Number, required: true },
+    createdAt: { type: Date, required: true },
+    removedAt: { type: Date, default: null  },
+    reason: { type: String, required: true },
+    moderatorId: { type: String, required: true }
+  },
+);
+
 const memberSchema = new Schema(
     {
         guildId: { type: String, required: true },
@@ -18,7 +28,8 @@ const memberSchema = new Schema(
         money: { type: Number, default: 0 },
         bank: { type: Number, default: 0 },
         cooldowns: { type: [cooldownEntrySchema], default: [] },
-        active: { type: Boolean, default: true }
+        active: { type: Boolean, default: true },
+        warns: { type: [warnEntrySchema], default: []}
     },
     { timestamps: true }
 )
