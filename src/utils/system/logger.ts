@@ -1,7 +1,7 @@
 import "colors";
 import { Guild } from "discord.js";
 import { guildRepository } from "#repositories";
-import Embed from "#structures/Embed";
+import Embed from "#structures/Embed.js";
 
 interface LogEvents {
   ban:           { moderatorId: string; targetId: string; reason: string };

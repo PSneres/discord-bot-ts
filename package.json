@@ -10,15 +10,33 @@
   },
   "type": "module",
   "imports": {
-    "#repositories": "./src/database/repositories/index.js",
-    "#models/*": "./src/database/models/*.js",
-    "#services/*": "./src/services/*.js",
-    "#structures/*": "./src/structures/*.js",
-    "#client": "./src/client.js",
-    "#config/*": "./src/config/*.js"
+    "#repositories": {
+      "development": "./src/database/repositories/index.ts",
+      "default": "./dist/database/repositories/index.js"
+    },
+    "#models/*": {
+      "development": "./src/database/models/*",
+      "default": "./dist/database/models/*"
+    },
+    "#services/*": {
+      "development": "./src/services/*",
+      "default": "./dist/services/*"
+    },
+    "#structures/*": {
+      "development": "./src/structures/*",
+      "default": "./dist/structures/*"
+    },
+    "#client": {
+      "development": "./src/client.ts",
+      "default": "./dist/client.js"
+    },
+    "#config/*": {
+      "development": "./src/config/*",
+      "default": "./dist/config/*"
+    }
   },
   "scripts": {
-    "dev": "tsx watch src/index.ts",
+    "dev": "tsx watch --conditions=development src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
     "lint": "eslint .",

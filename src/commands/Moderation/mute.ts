@@ -1,6 +1,6 @@
 import { Message, PermissionFlagsBits } from "discord.js";
 import Client from "#client";
-import BaseCommand from "#structures/Command";
+import BaseCommand from "#structures/Command.js";
 import resolveTarget from "../../utils/discord/resolveTarget.js";
 import ms, { StringValue } from "ms";
 const MAX_TIMEOUT = 20 * 24 * 60 * 60 * 1000; // 20 days

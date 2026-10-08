@@ -1,6 +1,6 @@
 import { Message, PermissionFlagsBits, TextChannel } from "discord.js";
 import Client from "#client";
-import BaseCommand from "#structures/Command";
+import BaseCommand from "#structures/Command.js";
 import ms, { StringValue } from "ms";
 const MAX_SLOWMODE = 6 * 60 * 60 * 1000; // 6h
 

@@ -1,8 +1,8 @@
 import { Message, User } from "discord.js";
 import Client from "#client";
-import BaseCommand from "#structures/Command";
+import BaseCommand from "#structures/Command.js";
 import { getWarns } from "#services/warns.service.js";
-import Embed from "#structures/Embed";
+import Embed from "#structures/Embed.js";
 import getTimestamp from "../../utils/discord/getTimestamp.js";
 import getUser from "../../utils/discord/getUser.js";
 

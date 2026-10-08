@@ -1,7 +1,7 @@
 import { Message, User } from "discord.js";
 import Client from "#client";
 import BaseCommand from "#structures/Command.js";
-import Embed from "#structures/Embed";
+import Embed from "#structures/Embed.js";
 import { getMoney, getBalance } from "#services/economy.service.js";
 import getUser from "../../utils/discord/getUser.js";
 import formatNumber from "../../utils/system/formatNumber.js";

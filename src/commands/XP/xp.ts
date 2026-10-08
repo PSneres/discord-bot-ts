@@ -1,8 +1,8 @@
 import { Message, User } from "discord.js";
 import Client from "#client";
 import BaseCommand from "#structures/Command.js";
-import { getXpData } from "#services/xp.service";
-import Embed from "#structures/Embed";
+import { getXpData } from "#services/xp.service.js";
+import Embed from "#structures/Embed.js";
 import { memberRepository } from "#repositories";
 import getUser from "../../utils/discord/getUser.js";
 

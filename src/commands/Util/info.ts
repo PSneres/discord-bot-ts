@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
 import Client from "#client";
-import BaseCommand from "#structures/Command";
-import Embed from "#structures/Embed";
+import BaseCommand from "#structures/Command.js";
+import Embed from "#structures/Embed.js";
 import getPrefix from "../../utils/client/getPrefix.js";
 import permissionTranslator from "../../utils/discord/permissionsTranslator.js"
 import capitalize from "../../utils/system/capitalize.js";

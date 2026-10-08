@@ -1,9 +1,9 @@
 import { Message, PermissionFlagsBits } from "discord.js";
 import Client from "#client";
-import BaseCommand from "#structures/Command";
+import BaseCommand from "#structures/Command.js";
 import resolveTarget from "../../utils/discord/resolveTarget.js";
 import { addWarn, removeWarn } from "#services/warns.service.js";
-import Embed from "#structures/Embed";
+import Embed from "#structures/Embed.js";
 const MAX_WARN_COUNT: number = 3;
 
 export default class extends BaseCommand {

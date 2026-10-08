@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
 import Client from "#client";
 import BaseCommand from "#structures/Command.js";
-import Embed from "#structures/Embed";
+import Embed from "#structures/Embed.js";
 import { memberRepository } from "#repositories";
 import formatNumber from "../../utils/system/formatNumber.js";
 
