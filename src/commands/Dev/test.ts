@@ -6,6 +6,7 @@ export default class extends BaseCommand {
     constructor(client: Client) {
         super(client, {
             name: "test",
+            category: "dev",
             devOnly: true
         });
     }

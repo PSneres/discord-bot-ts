@@ -11,6 +11,7 @@ export default class extends BaseCommand {
         super(client, {
             name: "work",
             description: "Trabalha para ganhar um valor em dinheiro.",
+            category: "economia",
             cooldown: ms("1h")
         });
     }

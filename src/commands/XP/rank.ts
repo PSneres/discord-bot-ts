@@ -10,7 +10,8 @@ export default class extends BaseCommand {
             name: "rank-xp",
             aliases: ['rankxp', 'rx', 'topxp'],
             description: "Mostra uma pagina do rank.",
-            usage: "<numero>",
+            category: "xp",
+            usage: "<numero>"
         });
     }
 

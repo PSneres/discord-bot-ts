@@ -11,6 +11,7 @@ export default class extends BaseCommand {
             name: "setxp",
             description: "Define o xp de um ou todos os usuários do servidor.",
             usage: "<member ou all> <xp>",
+            category: "xp",
             memberPermissions: [
                 PermissionFlagsBits.ManageMessages,
                 PermissionFlagsBits.ManageGuild

@@ -12,6 +12,7 @@ export default class extends BaseCommand {
             name: "xp",
             description: "Mostra as informações de xp do usuario",
             usage: "<user>",
+            category: "xp",
         });
     }
 
