@@ -67,6 +67,10 @@ export default class extends BaseCommand {
         await message.reply({
             content: `O membro ${targetMember.user.username} (${targetMember.id}) foi mutado por \`${timeText}\` com sucesso.`
         });
-        // logManager send <member X muted for Y time reason Z>
+        await this.client.logger.send(message.guild!, "timeout", {
+            moderatorId:  authorMember.id,
+            targetId: targetMember.id,
+            reason
+        });
     }
 }

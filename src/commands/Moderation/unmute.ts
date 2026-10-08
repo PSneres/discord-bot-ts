@@ -47,6 +47,5 @@ export default class extends BaseCommand {
         await message.reply({
             content: `O membro ${targetMember.user.username} (${targetMember.id}) foi desmutado com sucesso.`
         });
-        // logManager send <member X unmuted reason Y>
     }
 }

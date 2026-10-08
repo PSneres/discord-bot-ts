@@ -47,6 +47,10 @@ export default class extends BaseCommand {
         await message.reply({
             content: `O membro ${targetMember.user.username} (${targetMember.id}) foi expulso com sucesso.`
         })
-        // logManager send <member X kicked reason Y>
+        await this.client.logger.send(message.guild!, "kick", {
+            moderatorId:  authorMember.id,
+            targetId: targetMember.id,
+            reason
+        });
     }
 }

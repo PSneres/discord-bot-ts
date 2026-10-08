@@ -76,7 +76,11 @@ export default class extends BaseCommand {
             await message.reply({
                 content: `O membro ${targetMember.user.username} (${targetMember.id}) atingiu o limite de \`${MAX_WARN_COUNT}\` warns e foi banido.${dmFailed ? `\nNão foi possível enviar a mensagem para o membro.` : ""}`
             });
-            // logManager send <member X warned and banned reason Y>
+            await this.client.logger.send(message.guild!, "ban", {
+                moderatorId:  authorMember.id,
+                targetId: targetMember.id,
+                reason
+            });
             return;
         }
 
@@ -84,7 +88,11 @@ export default class extends BaseCommand {
             content: `O membro ${targetMember.user.username} (${targetMember.id}) recebeu um warn com sucesso: ${warnsCount}/\`${MAX_WARN_COUNT}\`${dmFailed ? `\nNão foi possível enviar a mensagem para o membro. recomendo que você o avise sobre.` : ""}`
         });
         
-        // logManager send <member X warned reason Y>
+        await this.client.logger.send(message.guild!, "warn", {
+                moderatorId:  authorMember.id,
+                targetId: targetMember.id,
+                reason
+        });
      }
     private async remove(message: Message, args: string[]) { 
         const guild = message.guild!;
@@ -135,6 +143,10 @@ export default class extends BaseCommand {
         await message.reply({
             content: `O warn foi removido com sucesso do usuário ${targetMember.user.username} (${targetMember.id})`
         });
-        // logManager send <member X removed warn>
+        await this.client.logger.send(message.guild!, "unwarn", {
+            moderatorId:  authorMember.id,
+            targetId: targetMember.id,
+            warnId
+        });
     }
 }

@@ -47,6 +47,10 @@ export default class extends BaseCommand {
         await message.reply({
             content: `O membro ${targetMember.user.username} (${targetMember.id}) foi banido com sucesso.`
         })
-        // logManager send <member X banned reason Y>
+        await this.client.logger.send(message.guild!, "ban", {
+            moderatorId:  authorMember.id,
+            targetId: targetMember.id,
+            reason
+        });
     }
 }

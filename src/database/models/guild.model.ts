@@ -5,7 +5,8 @@ const guildSchema = new Schema(
     {
         _id: { type: String, required: true },
         prefix: { type: String, default: config.prefix  },
-        xpChannel: { type: String, required: false }
+        xpChannel: { type: String, required: false },
+        logChannel: { type: String, required: false }
     },
     { timestamps: true }
 )
