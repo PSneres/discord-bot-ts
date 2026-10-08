@@ -11,6 +11,7 @@ export default class extends BaseCommand {
             aliases: ["sm"],
             description: "Define o tempo de espera de um chat.",
             usage: "<tempo>",
+            category: "moderação",
             memberPermissions: [ PermissionFlagsBits.ManageChannels ],
             clientPermissions: [ PermissionFlagsBits.ManageChannels ]
         });

@@ -13,6 +13,7 @@ export default class extends BaseCommand {
             name: "setmoney",
             description: "Define o dinheiro de um ou todos os usuários salvos..",
             usage: "<member ou all> <money>",
+            category: "economia",
             memberPermissions: [
                 PermissionFlagsBits.ManageMessages,
                 PermissionFlagsBits.ManageGuild

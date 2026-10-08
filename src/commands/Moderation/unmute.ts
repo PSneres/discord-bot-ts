@@ -9,6 +9,7 @@ export default class extends BaseCommand {
             name: "unmute",
             description: "Remove o mute de um membro do servidor.",
             usage: "<membro> <motivo>",
+            category: "moderação",
             memberPermissions: [ PermissionFlagsBits.ModerateMembers ],
             clientPermissions: [ PermissionFlagsBits.ModerateMembers ]
         });

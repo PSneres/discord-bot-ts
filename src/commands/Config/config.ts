@@ -11,6 +11,7 @@ export default class extends BaseCommand {
             name: "config",
             description: "Define as configurações gerais do servidor.",
             usage: "<set ou remove> <nome da configuração> <args>",
+            category: "configs",
             memberPermissions: [ 
                 PermissionFlagsBits.ManageMessages, 
                 PermissionFlagsBits.ManageChannels,

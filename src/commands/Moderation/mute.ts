@@ -12,6 +12,7 @@ export default class extends BaseCommand {
             description: "Muta um membro do servidor.",
             usage: "<membro> <tempo> <motivo>",
             cooldown: ms("30s"),
+            category: "moderação",
             memberPermissions: [ PermissionFlagsBits.ModerateMembers ],
             clientPermissions: [ PermissionFlagsBits.ModerateMembers ]
         });

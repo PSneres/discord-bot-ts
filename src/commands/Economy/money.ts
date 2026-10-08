@@ -13,6 +13,7 @@ export default class extends BaseCommand {
             aliases: ["atm", "wallet", "cash"],
             description: "Mostra o dinheiro de um usuário",
             usage: "<user>",
+            category: "economia",
         });
     }
 

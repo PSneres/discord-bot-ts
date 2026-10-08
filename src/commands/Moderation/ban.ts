@@ -9,6 +9,7 @@ export default class extends BaseCommand {
             name: "ban",
             description: "Bane um membro do servidor.",
             usage: "<membro> <motivo>",
+            category: "moderação",
             memberPermissions: [ PermissionFlagsBits.BanMembers ],
             clientPermissions: [ PermissionFlagsBits.BanMembers ]
         });

@@ -11,7 +11,8 @@ export default class extends BaseCommand {
         super(client, {
             name: "daily",
             description: "Claina seu premio diário",
-            cooldown: ms("24h")
+            cooldown: ms("24h"),
+            category: "economia",
         });
     }
 

@@ -12,6 +12,7 @@ export default class extends BaseCommand {
             aliases: ["draw"],
             description: "Saca seu dinheiro do banco",
             usage: "<money>",
+            category: "economia",
         });
     }
 

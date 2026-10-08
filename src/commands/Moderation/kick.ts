@@ -9,6 +9,7 @@ export default class extends BaseCommand {
             name: "kick",
             description: "Expulsa um membro do servidor.",
             usage: "<membro> <motivo>",
+            category: "moderação",
             memberPermissions: [ PermissionFlagsBits.KickMembers ],
             clientPermissions: [ PermissionFlagsBits.KickMembers ]
         });

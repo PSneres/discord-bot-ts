@@ -12,6 +12,7 @@ export default class extends BaseCommand {
             aliases: ['rankmoney', 'rm', 'topm'],
             description: "Mostra uma pagina do rank.",
             usage: "<numero>",
+            category: "economia",
         });
     }
 

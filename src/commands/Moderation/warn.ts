@@ -12,6 +12,7 @@ export default class extends BaseCommand {
             name: "warn",
             description: "Administra os warns dos membros do servidor.",
             usage: "<add ou remove> <membro> <motivo ou warn_id>",
+            category: "moderação",
             memberPermissions: [ PermissionFlagsBits.BanMembers ],
             clientPermissions: [ PermissionFlagsBits.BanMembers ]
         });

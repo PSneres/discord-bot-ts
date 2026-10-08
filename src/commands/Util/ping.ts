@@ -7,7 +7,8 @@ export default class extends BaseCommand {
         super(client, {
             name: "ping",
             description: "Responde pong",
-            aliases: ["p"]
+            aliases: ["p"],
+            category: "util"
         });
     }
 

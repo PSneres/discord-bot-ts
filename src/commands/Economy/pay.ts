@@ -14,6 +14,7 @@ export default class extends BaseCommand {
             aliases: ['transfer'],
             description: "Transfere um valor do seu banco para outro usuário.",
             usage: "<user> <numero>",
+            category: "economia",
         });
     }
 

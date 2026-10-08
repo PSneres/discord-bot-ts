@@ -12,6 +12,7 @@ export default class extends BaseCommand {
             aliases: ["dep",  "bank"],
             description: "Deposita o dinheiro no banco",
             usage: "<money>",
+            category: "economia",
         });
     }
 

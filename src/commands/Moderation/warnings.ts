@@ -9,6 +9,7 @@ export default class extends BaseCommand {
     constructor(client: Client) {
         super(client, {
             name: "warnings",
+            category: "moderação",
             description: "Vê os seus warns ativos e inativos.",
         });
     }
